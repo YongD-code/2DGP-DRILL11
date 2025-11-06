@@ -35,7 +35,7 @@ class Zombie:
         self.dir = random.choice([-1,1])
         self.w = 200
         self.h = 200
-
+        self.strike = 0
     def get_bb(self):
         return self.x - 100, self.y - 100, self.x + 100, self.y + 100
 
@@ -62,6 +62,10 @@ class Zombie:
 
     def handle_collision(self, group, other):
         if group == 'zombie:ball':
-            game_world.remove_object(self)
+            self.strike += 1
+            if self.strike == 1:
+                self.w, self.h = 100,100
+            elif self.strike >=2:
+                game_world.remove_object(self)
         pass
 
