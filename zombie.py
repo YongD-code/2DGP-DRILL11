@@ -67,7 +67,7 @@ class Zombie:
                 return
             self.strike += 1
             if self.strike == 1:
-                self.w, self.h,self.y = 100,100,90
+                self.w, self.h,self.y = 100,100,100
             elif self.strike >=2:
                 game_world.remove_object(self)
         pass
