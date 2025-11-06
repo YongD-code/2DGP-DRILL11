@@ -63,6 +63,8 @@ class Zombie:
 
     def handle_collision(self, group, other):
         if group == 'zombie:ball':
+            if other.stopped:
+                return
             self.strike += 1
             if self.strike == 1:
                 self.w, self.h,self.y = 100,100,90
