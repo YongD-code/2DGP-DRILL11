@@ -15,7 +15,7 @@ class Ball:
         self.xv = throwin_speed * math.cos(math.radians(throwin_angle))  # m/s
         self.yv = abs(throwin_speed * math.sin(math.radians(throwin_angle)))   # m/s
         self.stopped = True if throwin_speed == 0.0 else False
-
+        self.remove = False
     def draw(self):
         self.image.draw(self.x, self.y)
         draw_rectangle(*self.get_bb())
@@ -38,5 +38,7 @@ class Ball:
             game_world.remove_object(self)
         elif group == 'grass:ball':
             self.stopped = True
+            self.remove = False
         elif group == 'zombie:ball':
-            game_world.remove_object(self)
+            if self.remove:
+                game_world.remove_object(self)
